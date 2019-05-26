@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2, ElementRef, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { sampleSpeeches } from '../../data/speech-data';
 
 @Component({
   selector: 'app-view-my-speeches',
@@ -9,23 +10,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 export class DashboardComponent implements OnInit, AfterViewInit {
 
-  public sampleSpeeches = [
-    {
-      Title: ' Speech1',
-      Author: 'Clyde Ian',
-      SubjectArea : 'Politics',
-      Body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam non interdum nisi. In sit amet eros ut ipsum porttitor dapibus. Proin eu vestibulum tortor. Duis et massa non dui commodo molestie. Pellentesque efficitur, odio eget dictum fermentum, libero arcu finibus enim, vel commodo ex orci ut elit. Aenean nisi turpis, rhoncus aliquet sem quis, fermentum hendrerit diam. Maecenas dictum quis lectus consequat laoreet. Mauris volutpat velit ut sollicitudin dapibus.'
-    },
-    {
-      Title: ' Speech2',
-      Author: 'Clyde Ian 2',
-      SubjectArea : 'Politics2',
-      Body: 'eee Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam non interdum nisi. In sit amet eros ut ipsum porttitor dapibus. Proin eu vestibulum tortor. Duis et massa non dui commodo molestie. Pellentesque efficitur, odio eget dictum fermentum, libero arcu finibus enim, vel commodo ex orci ut elit. Aenean nisi turpis, rhoncus aliquet sem quis, fermentum hendrerit diam. Maecenas dictum quis lectus consequat laoreet. Mauris volutpat velit ut sollicitudin dapibus.'
-    }
-  ]
 
   public indexTab;
   public indexTabContent;
+  public sampleSpeechesData = sampleSpeeches;
 
   constructor(
     private renderer: Renderer2,
@@ -33,7 +21,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(){
-    this.indexTabContent = this.sampleSpeeches[0];
+    this.indexTabContent = sampleSpeeches[0];
    }
 
   ngAfterViewInit() {
@@ -52,7 +40,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     this.indexTab = arrayOfNewClasses[4];
-    this.indexTabContent = this.sampleSpeeches[this.indexTab];
+    this.indexTabContent = sampleSpeeches[this.indexTab];
 
     console.log(this.indexTab,this.indexTabContent,element.querySelector('.fas'))
 
@@ -62,6 +50,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.renderer.addClass(element, 'active');
       this.renderer.addClass(element.querySelector('.fas'), 'show');
     }
+  }
+
+  onDelete(event){
+    this.indexTabContent = event[0];
   }
 
 }

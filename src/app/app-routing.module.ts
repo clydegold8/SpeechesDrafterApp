@@ -6,6 +6,7 @@ import { SearchAllSpeechesComponent } from './components/search-all-speeches/sea
 
 const routes: Routes = [
   { path: '', component: DashboardComponent},
+  { path: 'view-components', component: DashboardComponent},
   {path: 'add-new-speech', component: AddNewSpeechComponent},
   {path: 'search-all-speeches', component: SearchAllSpeechesComponent}
 

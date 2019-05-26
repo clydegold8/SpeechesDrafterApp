@@ -1,33 +1,48 @@
 
-<form action="">
+<div class="row">
+  <div class="col-md-12">
+      <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+  </div>
+</div>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
 
   <div class="tab-content">
-    <textarea [className]="'hide form-control speech-body speechBody'" [(ngModel)]="speechBody.Body" name="speechBody"></textarea>
+    <textarea required (keyup)="onKey($event)" [className]="'hide form-control speech-body speechBody'" [ngModel]="speechBody.Body" id="bodyText" name="speechBody"></textarea>
+    <small class="form-text invalid-feedback body-helper">Please write a short speech</small>
   </div>
 
   <div class="row">
     <div class="col-md-4 form-group">
-      <input type="text" name="author" [(ngModel)]="speechBody.Author"  class="form-control" id="authorInput" placeholder="Author">
-      <!-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+      <input required (keyup)="onKey($event)" type="text" name="speechAuthor" [ngModel]="speechBody.Author"  class="form-control" id="authorInput" placeholder="Author">
+      <small class="form-text invalid-feedback author-helper">Please add an Author</small>
     </div>
     <div class="col-md-4 form-group">
-        <input type="text" name="subjectArea" [(ngModel)]="speechBody.SubjectArea"  class="form-control" id="authorInput" placeholder="Subject area">
-    </div>
+        <input required (keyup)="onKey($event)" type="text" name="speechSubjectArea" [ngModel]="speechBody.SubjectArea"  class="form-control" id="subjectInput" placeholder="Subject area">
+        <small class="form-text invalid-feedback subject-helper">Please add a subject</small>
+      </div>
     <div class="col-md-4 form-group">
-      date
+        <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+                   name="speechDate" [ngModel]="speechBody.Date" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="d.toggle();onKey($event)" type="button">
+                  <i class="fas fa-calendar-alt"></i>
+              </button>
+            </div>
+          </div>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-6"></div>
     <div class="col-md-2">
-        <button type="button" class="btn btn-primary float-right">Delete</button>
+        <a href="javascript:void(0);" (click)="deleteSpeech()" class="btn btn-primary float-right">Delete</a>
     </div>
     <div class="col-md-2">
-        <button type="button" class="btn btn-primary float-right">Save</button>
+        <button type="submit" class="btn btn-primary float-right saveSpeech">Save</button>
     </div>
     <div class="col-md-2">
-        <button type="button" class="btn btn-primary float-right">Share</button>
+        <a href="javascript:void(0);" (click)="shareSpeech()" class="btn btn-primary float-right">Share</a>
     </div>
   </div>
 

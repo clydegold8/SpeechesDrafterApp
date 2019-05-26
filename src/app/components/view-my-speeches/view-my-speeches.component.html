@@ -1,12 +1,12 @@
 <div class="container-fluid">
   <div class="row tab-contents" >
     <div class="col-3">
-      <div *ngFor="let speeches of sampleSpeeches; let i = index" class="title-nav nav flex-column nav-pills">
-        <a (click)="changeTab($event)" [className]="'bg-secondary nav-link font-weight-bold speechTitle' + i + ' '+ i"  href="#">{{speeches.Title}} <i [className]="'fas hide fa-caret-right icon'+i" ></i></a>
+      <div *ngFor="let speeches of sampleSpeechesData; let i = index" class="title-nav nav flex-column nav-pills">
+        <a (click)="changeTab($event)" [className]="'bg-secondary nav-link font-weight-bold speechTitle' + i + ' '+ i"  href="javascript:void(0);">{{speeches.Title}} <i [className]="'fas hide fa-caret-right icon'+i" ></i></a>
       </div>
     </div>
     <div class="col-9">
-      <app-view-my-speeches-body [speechData]="sampleSpeeches" [speechBody]="indexTabContent"></app-view-my-speeches-body>
+      <app-view-my-speeches-body (newSpeechData)="onDelete($event)" [arrIndex]="indexTab" [speechData]="sampleSpeechesData" [speechBody]="indexTabContent"></app-view-my-speeches-body>
     </div>
   </div>
 </div>

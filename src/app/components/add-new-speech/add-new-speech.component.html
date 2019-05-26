@@ -1,1 +1,51 @@
-test
+<div class="container-fluid">
+  <form novalidate [formGroup]="speechForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6  title-bx">
+          <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6  form-group title-bx">
+          <input (keyup)="onKey($event)" autocomplete="off" tabindex="1" #speechTitle formControlName="speechTitle" required type="text" name="speechTitle" class="form-control" id="speechTitle" placeholder="Speech Title">
+          <small class="form-text invalid-feedback title-helper">Please add a Title</small>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6  form-group">
+            <input (keyup)="onKey($event)" autocomplete="off" tabindex="2" #speechAuthor formControlName="speechAuthor" required type="text" name="speechAuthor" class="form-control" id="speechAuthor" placeholder="Speech Author">
+            <small class="form-text invalid-feedback author-helper">Please add an Author</small>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+          <textarea (keyup)="onKey($event)" autocomplete="off" tabindex="3" #speechBody formControlName="speechBody" required placeholder="Add a speech here" class="form-control speech-body speechBody" id="speechBody" name="speechBody"></textarea>
+          <small class="form-text invalid-feedback body-helper">Please write a short speech</small>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6 title-bx">
+          <input (keyup)="onKey($event)" autocomplete="off" tabindex="4" #speechSubject formControlName="speechSubject" required type="text" name="speechSubject" class="form-control" id="speechSubject" placeholder="Speech Subject">
+          <small class="form-text invalid-feedback subject-helper">Please write a subject</small>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 title-bx"></div>
+        <div class="col-md-3 title-bx">
+            <button tabindex="6" type="submit" class="btn btn-primary float-right saveSpeech">Save</button>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+  </form>
+</div>
