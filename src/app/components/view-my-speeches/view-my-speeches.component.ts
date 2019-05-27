@@ -1,5 +1,4 @@
 import { Component, OnInit, Renderer2, ElementRef, AfterViewInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { sampleSpeeches } from '../../data/speech-data';
 
 @Component({
@@ -42,8 +41,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.indexTab = arrayOfNewClasses[4];
     this.indexTabContent = sampleSpeeches[this.indexTab];
 
-    console.log(this.indexTab,this.indexTabContent,element.querySelector('.fas'))
-
     if (!(arrayOfNewClasses.includes('active'))) {
       this.renderer.removeClass(this.el.nativeElement.querySelector('.show'), 'show');
       this.renderer.removeClass(this.el.nativeElement.querySelector('.active'), 'active');
@@ -52,7 +49,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onDelete(event){
+  onDelete(event) {
     this.indexTabContent = event[0];
   }
 

@@ -34,6 +34,7 @@ export class ViewMySpeechesBodyComponent implements OnInit {
 
   ngOnInit() {
     this.renderer.setAttribute(this.el.nativeElement.querySelector('.saveSpeech'), 'disabled', '');
+    this.renderer.addClass(this.el.nativeElement.querySelector('.saveSpeech'), 'notAllowed');
 
     this._success.subscribe((message) => this.successMessage = message);
     this._success.pipe(
@@ -43,10 +44,10 @@ export class ViewMySpeechesBodyComponent implements OnInit {
 
   onKey(event){
     this.renderer.removeAttribute(this.el.nativeElement.querySelector('.saveSpeech'), 'disabled', '');
+    this.renderer.removeClass(this.el.nativeElement.querySelector('.saveSpeech'), 'notAllowed');
   }
 
   onSubmit(f: NgForm){
-    console.log(f.value,f.errors);
 
     if (f.valid) {
       this.speechBody.Author = f.value['speechAuthor'];
@@ -68,15 +69,16 @@ export class ViewMySpeechesBodyComponent implements OnInit {
     }
 
     this.renderer.setAttribute(this.el.nativeElement.querySelector('.saveSpeech'), 'disabled', '');
+    this.renderer.removeClass(this.el.nativeElement.querySelector('.saveSpeech'), 'notAllowed');
   }
 
-  deleteSpeech(){
+  deleteSpeech() {
     this.speechData.splice(this.arrIndex, 1);
     this.newSpeechData.emit(this.speechData);
     this._success.next(`Speech successfully deleted.`);
   }
 
-  shareSpeech(){
+  shareSpeech() {
     this._success.next(`Speech successfully shared.`);
   }
 

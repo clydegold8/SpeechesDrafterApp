@@ -37,6 +37,7 @@ export class AddNewSpeechComponent implements OnInit {
 
   ngOnInit(): void {
     this.renderer.setAttribute(this.el.nativeElement.querySelector('.saveSpeech'), 'disabled', '');
+    this.renderer.addClass(this.el.nativeElement.querySelector('.saveSpeech'), 'notAllowed');
 
     this._success.subscribe((message) => this.successMessage = message);
     this._success.pipe(
@@ -46,6 +47,7 @@ export class AddNewSpeechComponent implements OnInit {
 
   onKey(event){
     this.renderer.removeAttribute(this.el.nativeElement.querySelector('.saveSpeech'), 'disabled', '');
+    this.renderer.removeClass(this.el.nativeElement.querySelector('.saveSpeech'), 'notAllowed');
   }
 
   onSubmit() {
@@ -54,8 +56,6 @@ export class AddNewSpeechComponent implements OnInit {
     const speechBody = this.speechForm.get('speechBody').value;
     const speechSubject = this.speechForm.get('speechSubject').value;
     const speechAuthor = this.speechForm.get('speechAuthor').value;
-
-    console.log(this.speechForm,this.speechForm.status)
 
     if (this.speechForm.status === 'VALID') {
       const newSpeech: SpeechData = {
@@ -84,6 +84,7 @@ export class AddNewSpeechComponent implements OnInit {
       }
     }
     this.renderer.removeAttribute(this.el.nativeElement.querySelector('.saveSpeech'), 'disabled', '');
+    this.renderer.removeClass(this.el.nativeElement.querySelector('.saveSpeech'), 'notAllowed');
   }
 
 }

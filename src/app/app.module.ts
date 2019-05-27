@@ -11,6 +11,7 @@ import { SearchAllSpeechesComponent } from './components/search-all-speeches/sea
 import { ViewMySpeechesBodyComponent } from './components/view-my-speeches/view-my-speeches-body/view-my-speeches-body.component';
 
 import {NgbModule, NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { SearchPipe } from './pipes/search-speeches.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {NgbModule, NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-b
     DashboardComponent,
     AddNewSpeechComponent,
     SearchAllSpeechesComponent,
-    ViewMySpeechesBodyComponent
+    ViewMySpeechesBodyComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,10 @@ import {NgbModule, NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-b
     NgbAlertModule,
     ReactiveFormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [SearchPipe],
+  bootstrap: [AppComponent],
+  exports: [
+    SearchPipe
+  ]
 })
 export class AppModule { }

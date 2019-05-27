@@ -1,1 +1,34 @@
-TEST SEARCH SPEECHES
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6 search-bar">
+      <input required (keyup)="searchSpeech()"  type="text"   [(ngModel)]="query"  class="form-control" id="search" placeholder="Search Speech">
+  </div>
+  <div class="col-md-3"></div>
+</div>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div *ngIf="noResults" class="col-md-6 search-bar">
+      <small>Results: 0</small>
+      <p>
+          <ngb-alert [type]="'danger'" [dismissible]="false"> No Speech/es Found, Try searching again. </ngb-alert>
+      </p>
+  </div>
+  <div *ngIf="hasResults" class="col-md-6 search-bar">
+    <small>Results: {{searchedSpeech.length}}</small>
+    <div class="result-bx" *ngFor="let speech of searchedSpeech">
+        <div class="row">
+          <div class="col-md-6"><h2>Title: {{speech.Title}} </h2></div>
+          <div class="col-md-6"><h2>Author: {{speech.Author}}</h2></div>
+        </div>
+        <div class="row">
+          <div class="col-md-6"><h2>Subject Area: {{speech.SubjectArea}}</h2> </div>
+          <div class="col-md-6"><h3>Date created: <span>{{speech.Date['year']}} / {{speech.Date['month']}} / {{speech.Date['day']}}</span></h3></div>
+        </div>
+        <p class="text-justify">
+          {{speech.Body}}
+        </p>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+
